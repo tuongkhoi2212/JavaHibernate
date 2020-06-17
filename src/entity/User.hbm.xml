@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2020 3:46:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="hibernate_java_db" name="entity.User" optimistic-lock="version" table="user">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="userName" type="string">
+      <column length="45" name="UserName" not-null="true" unique="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="45" name="Password" not-null="true"/>
+    </property>
+    <property name="isAdmin" type="java.lang.Byte">
+      <column name="IsAdmin"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2020 3:46:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="hibernate_java_db" name="entity.Student" optimistic-lock="version" table="student">
+    <id name="mssv" type="int">
+      <column name="MSSV"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="hoTen" type="string">
+      <column length="45" name="HoTen" not-null="true"/>
+    </property>
+    <property name="gioiTinh" type="string">
+      <column length="3" name="GioiTinh" not-null="true"/>
+    </property>
+    <property name="cmnd" type="string">
+      <column length="9" name="CMND" not-null="true"/>
+    </property>
+    <property name="lop" type="string">
+      <column length="45" name="Lop" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

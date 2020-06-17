@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2020 3:46:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="hibernate_java_db" name="entity.Course" optimistic-lock="version" table="course">
+    <id name="maMon" type="string">
+      <column length="10" name="MaMon"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tenMon" type="string">
+      <column length="45" name="TenMon" not-null="true"/>
+    </property>
+    <property name="phongHoc" type="string">
+      <column length="45" name="PhongHoc" not-null="true"/>
+    </property>
+    <property name="lop" type="string">
+      <column length="45" name="Lop" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
