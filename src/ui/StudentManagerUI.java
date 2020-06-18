@@ -1,5 +1,10 @@
 package ui;
 
+import java.io.*;
+import javax.swing.*;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.filechooser.*; 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -59,6 +64,11 @@ public class StudentManagerUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Import ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Thêm SV");
 
@@ -108,6 +118,28 @@ public class StudentManagerUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
+        fc.setFileFilter(filter);
+        fc.showOpenDialog(null);
+        File f = fc.getSelectedFile();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            String line;
+            while ((line = reader.readLine())  != null) {
+                String[] value = line.split(",");
+                if (value.length > 0) {
+                    showMessageDialog(null, value);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println(e);
+        } /*catch (SQLException e) {
+            System.err.println(e);
+        }*/
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -151,4 +183,8 @@ public class StudentManagerUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void While(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
