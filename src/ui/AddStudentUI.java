@@ -6,6 +6,7 @@
 package ui;
 
 import entity.Student;
+import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import util.HibernateUtil;
@@ -153,6 +154,7 @@ public class AddStudentUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String alert = "";
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -167,9 +169,13 @@ public class AddStudentUI extends javax.swing.JFrame {
 
             session.save(s);
             session.getTransaction().commit();
+            
+            alert = "Đã thêm sinh viên " + jTextField1.getText() + " vào hệ thống ";
         } catch (HibernateException he) {
             System.err.println(he);
         }
+        showMessageDialog(null, alert);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

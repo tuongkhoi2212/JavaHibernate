@@ -5,6 +5,27 @@
  */
 package ui;
 
+import entity.Course;
+import entity.CourseStudent;
+import entity.IdCourseStudent;
+import entity.Student;
+import entity.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JFileChooser;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import util.HibernateUtil;
+
 /**
  *
  * @author AEVN
@@ -32,6 +53,10 @@ public class CourseManagerUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +68,7 @@ public class CourseManagerUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Mã môn học", "Tên môn học", "Phòng học", "Lớp "
+                "STT", "Mã môn học", "Tên môn học", "Phòng học", "Lớp "
             }
         ) {
             Class[] types = new Class [] {
@@ -56,17 +81,48 @@ public class CourseManagerUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Import");
+        jButton1.setText(" Import thời khóa biểu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Xem thời khóa biểu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Danh sách môn học");
+
+        jLabel2.setText("Lớp:");
+
+        jButton3.setText("Trở về trang chính");
+
+        jButton4.setText("Xem danh sách (tất cả)");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -75,32 +131,146 @@ public class CourseManagerUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
                         .addComponent(jLabel1)
-                        .addGap(0, 98, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
+        fc.setFileFilter(filter);
+        fc.showOpenDialog(null);
+        File f = fc.getSelectedFile();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            String line;
+            String lop = "";
+            while ((line = reader.readLine())  != null) {
+                String[] value = line.split(",");
+                //String query = "INSERT INTO Student VALUES (,)";
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                if (value.length == 1) {
+                    lop = value[0];
+                } else if (value.length > 1) {
+                    if (!value[0].equals("STT")) {
+                        Course c = new Course();
+                        
+                        c.setLop(lop);
+                        c.setMaMon(value[1]);
+                        c.setPhongHoc(value[3]);
+                        c.setTenMon(value[2]);
+                        session.save(c);
+                        
+                        List studentsList = session.createQuery("FROM Student").list();
+                        
+                        for(Object o : studentsList) {
+                            Student s = (Student)o;
+                            if (s.getLop().equals(lop)) {
+                                CourseStudent cs = new CourseStudent();
+                                IdCourseStudent ics = new IdCourseStudent();
+                                
+                                ics.setMaMon(value[1]);
+                                ics.setMssv(s.getMssv());
+                        
+                                cs.setIcs(ics);
+                                session.save(cs);
+                            }
+                        }
+                    }
+                }
+                session.getTransaction().commit();
+            }
+        } catch (IOException e) {
+            System.err.println(e);
+        } catch (HibernateException he) {
+            System.err.println(he);
+        }
+        showMessageDialog(null, "Đã import xong thời khóa biểu");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String query = "";
+        String alert = "Chưa nhập vào lớp! Mời nhập vào để xem thời khóa biểu";
+        if (!jTextField1.getText().equals("")) {
+            query = "FROM Course c WHERE c.lop = '"
+                            + jTextField1.getText() + "' ";
+            alert = "Danh sách lớp " + jTextField1.getText();
+            executeHQLQuery(query);
+        }
+        showMessageDialog(null, alert);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        executeHQLQuery("FROM Course");
+        showMessageDialog(null, "Thời khóa biểu của tất cả các lớp");
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    private void executeHQLQuery(String query) {
+        List cList = new ArrayList();
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            cList = session.createQuery(query).list();
+            displayCSList(cList);
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            System.err.println(he);
+        }
+    }
+    
+    public void displayCSList (List resultList) {
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        tableHeaders.add("STT"); 
+        tableHeaders.add("Mã môn học");
+        tableHeaders.add("Tên môn học");
+        tableHeaders.add("Phòng học");
+        tableHeaders.add("Lớp");
+        
+        int STT = 0;
+
+        for(Object o : resultList) {
+            STT++;
+            Course c = (Course)o;
+            
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(STT);
+            oneRow.add(c.getMaMon());
+            oneRow.add(c.getTenMon());
+            oneRow.add(c.getPhongHoc());
+            oneRow.add(c.getLop());
+            tableData.add(oneRow);
+        }
+        jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+    }
     /**
      * @param args the command line arguments
      */
@@ -139,8 +309,12 @@ public class CourseManagerUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

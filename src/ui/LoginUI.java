@@ -103,7 +103,7 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        StudentManagerUI frame = new StudentManagerUI();
+        AdminUI frame = new AdminUI();
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
