@@ -5,6 +5,9 @@
  */
 package ui;
 
+import entity.User;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author AEVN
@@ -14,8 +17,11 @@ public class AdminUI extends javax.swing.JFrame {
     /**
      * Creates new form AdminUI
      */
-    public AdminUI() {
+    static private User user;
+    
+    public AdminUI(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -59,6 +65,11 @@ public class AdminUI extends javax.swing.JFrame {
         });
 
         jButton4.setText("Đổi mật khẩu");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Trang quản lý ");
@@ -128,21 +139,27 @@ public class AdminUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        StudentManagerUI frame = new StudentManagerUI();
+        StudentManagerUI frame = new StudentManagerUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        CourseManagerUI frame = new CourseManagerUI();
+        CourseManagerUI frame = new CourseManagerUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();
-        TranscriptUI frame = new TranscriptUI();
+        TranscriptUI frame = new TranscriptUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        ChangePasswordUI frame = new ChangePasswordUI(user);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,7 +191,7 @@ public class AdminUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminUI().setVisible(true);
+                new AdminUI(user).setVisible(true);
             }
         });
     }

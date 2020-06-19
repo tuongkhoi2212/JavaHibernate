@@ -8,6 +8,7 @@ package ui;
 import entity.CourseStudent;
 import entity.IdCourseStudent;
 import entity.Student;
+import entity.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,8 +34,11 @@ public class TranscriptUI extends javax.swing.JFrame {
     /**
      * Creates new form TranscriptUI
      */
-    public TranscriptUI() {
+    static private User user;
+    
+    public TranscriptUI(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -308,9 +312,10 @@ public class TranscriptUI extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.dispose();
-        AdminUI frame = new AdminUI();
+        AdminUI frame = new AdminUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+    
     public void displayTranscriptList (List resultList) {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
@@ -398,7 +403,7 @@ public class TranscriptUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TranscriptUI().setVisible(true);
+                new TranscriptUI(user).setVisible(true);
             }
         });
     }

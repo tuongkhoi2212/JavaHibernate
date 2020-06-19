@@ -35,8 +35,11 @@ public class CourseManagerUI extends javax.swing.JFrame {
     /**
      * Creates new form CourseManagerUI
      */
-    public CourseManagerUI() {
+    static private User user;
+    
+    public CourseManagerUI(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -239,7 +242,7 @@ public class CourseManagerUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
-        AdminUI frame = new AdminUI();
+        AdminUI frame = new AdminUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
     
@@ -311,7 +314,7 @@ public class CourseManagerUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CourseManagerUI().setVisible(true);
+                new CourseManagerUI(user).setVisible(true);
             }
         });
     }
