@@ -5,8 +5,10 @@
  */
 package ui;
 
+import entity.Course;
 import entity.CourseStudent;
 import entity.IdCourseStudent;
+import entity.Student;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -132,8 +134,9 @@ public class RemoveStudentInCourse extends javax.swing.JFrame {
 
             session.delete(cs);
             session.getTransaction().commit();
-            alert = "Đã xóa sinh viên " + jTextField3.getText() + " khỏi môn học " 
-                    + jTextField1.getText();
+            alert = "Đã xóa sinh viên "
+                    + getHoTenSinhVien(Integer.parseInt(jTextField3.getText())) 
+                    + " khỏi môn " + getTenMonHoc(jTextField1.getText());
             
         } catch (HibernateException he) {
             System.err.println(he);
@@ -142,6 +145,35 @@ public class RemoveStudentInCourse extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private String getHoTenSinhVien (int mssv) {
+        String hoTen = "";
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            String query = "FROM Student s WHERE s.mssv = '" + mssv + "'";
+            Student s = (Student)session.createQuery(query).uniqueResult();
+            hoTen = s.getHoTen();
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            System.err.println(he);
+        }
+        return hoTen;
+    }
+    
+    private String getTenMonHoc (String maMonHoc) {
+        String tenMonHoc = "";
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            String query = "FROM Course c WHERE c.maMon = '" + maMonHoc + "'";
+            Course c = (Course)session.createQuery(query).uniqueResult();
+            tenMonHoc = c.getTenMon();
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            System.err.println(he);
+        }
+        return tenMonHoc;
+    }
     /**
      * @param args the command line arguments
      */

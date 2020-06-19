@@ -5,8 +5,10 @@
  */
 package ui;
 
+import entity.Course;
 import entity.CourseStudent;
 import entity.IdCourseStudent;
+import entity.Student;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -182,20 +184,49 @@ public class MarkUpdateUI extends javax.swing.JFrame {
             cs.setDiemCk(Float.parseFloat(jTextField4.getText()));
             cs.setDiemKhac(Float.parseFloat(jTextField5.getText()));
             cs.setDiemTong(Float.parseFloat(jTextField6.getText()));
+            
+            String query = "FROM CourseStudent cs WHERE cs.ics.mssv = '"
+                    + jTextField1.getText() + "' AND cs.ics.maMon = '"
+                    + jTextField2.getText() + "'";
+            boolean exists = (Long) session.createQuery(query).uniqueResult() > 0;
+            
+            if (!exists) {
+                alert = "Không tìm thấy sinh viên hoặc môn học tương ứng";
+            } else {
 
-            session.update(cs);
+                session.update(cs);
+
+                alert = "Đã sửa điểm của sinh viên " + 
+                    getHoTenSinhVien(Integer.parseInt(jTextField3.getText())) 
+                    + " thành " + jTextField3.getText() + ", "
+                    + jTextField4.getText() + ", " + jTextField5.getText()
+                    + ", " + jTextField6.getText();
+            }
+
             session.getTransaction().commit();
             
-            alert = "Đã sửa điểm sinh viên " + jTextField1.getText() + " thành "
-                    + jTextField3.getText() + ", " + jTextField4.getText() + ", "
-                    + jTextField5.getText() + ", " + jTextField6.getText();
         } catch (HibernateException he) {
             System.err.println(he);
         }
         showMessageDialog(null, alert);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private String getHoTenSinhVien (int mssv) {
+        String hoTen = "";
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            String query = "FROM Student s WHERE s.mssv = '" + mssv + "'";
+            Student s = (Student)session.createQuery(query).uniqueResult();
+            hoTen = s.getHoTen();
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            System.err.println(he);
+        }
+        return hoTen;
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -170,7 +170,7 @@ public class AddStudentUI extends javax.swing.JFrame {
             session.save(s);
             session.getTransaction().commit();
             
-            alert = "Đã thêm sinh viên " + jTextField1.getText() + " vào hệ thống ";
+            alert = "Đã thêm sinh viên " + jTextField3.getText() + " vào hệ thống ";
         } catch (HibernateException he) {
             System.err.println(he);
         }

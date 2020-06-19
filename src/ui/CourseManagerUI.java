@@ -101,6 +101,11 @@ public class CourseManagerUI extends javax.swing.JFrame {
         jLabel2.setText("Lớp:");
 
         jButton3.setText("Trở về trang chính");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Xem danh sách (tất cả)");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +236,12 @@ public class CourseManagerUI extends javax.swing.JFrame {
         executeHQLQuery("FROM Course");
         showMessageDialog(null, "Thời khóa biểu của tất cả các lớp");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        AdminUI frame = new AdminUI();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     private void executeHQLQuery(String query) {
         List cList = new ArrayList();
