@@ -5,11 +5,9 @@
  */
 package ui;
 
-import entity.Course;
 import entity.CourseStudent;
 import entity.IdCourseStudent;
 import entity.Student;
-import entity.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -30,12 +28,12 @@ import util.HibernateUtil;
  *
  * @author AEVN
  */
-public class CourseManagerUI extends javax.swing.JFrame {
+public class TranscriptUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form CourseManagerUI
+     * Creates new form TranscriptUI
      */
-    public CourseManagerUI() {
+    public TranscriptUI() {
         initComponents();
     }
 
@@ -50,113 +48,106 @@ public class CourseManagerUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã môn học", "Tên môn học", "Phòng học", "Lớp "
+                "STT", "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText(" Import thời khóa biểu");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Bảng điểm");
+
+        jButton1.setText("Import bảng điểm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Xem thời khóa biểu");
+        jButton2.setText("Xem bảng điểm");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Danh sách môn học");
+        jLabel2.setText("Mã môn học:");
 
-        jLabel2.setText("Lớp:");
+        jButton3.setText("Danh sách đậu");
 
-        jButton3.setText("Trở về trang chính");
+        jButton4.setText("Danh sách rớt");
 
-        jButton4.setText("Xem danh sách (tất cả)");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jButton5.setText("Thống kê");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(156, 156, 156))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(22, 22, 22))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,38 +162,29 @@ public class CourseManagerUI extends javax.swing.JFrame {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(f));
             String line;
-            String lop = "";
+            String[] mon = null;
             while ((line = reader.readLine())  != null) {
                 String[] value = line.split(",");
+                //String query = "INSERT INTO Student VALUES (,)";
                 Session session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
                 if (value.length == 1) {
-                    lop = value[0];
+                    mon = value[0].split("-");
                 } else if (value.length > 1) {
                     if (!value[0].equals("STT")) {
-                        Course c = new Course();
+                        CourseStudent cs = new CourseStudent();
+                        IdCourseStudent ics = new IdCourseStudent();
                         
-                        c.setLop(lop);
-                        c.setMaMon(value[1]);
-                        c.setPhongHoc(value[3]);
-                        c.setTenMon(value[2]);
-                        session.save(c);
+                        ics.setMaMon(mon[1]);
+                        ics.setMssv(Integer.parseInt(value[1]));
                         
-                        List studentsList = session.createQuery("FROM Student").list();
-                        
-                        for(Object o : studentsList) {
-                            Student s = (Student)o;
-                            if (s.getLop().equals(lop)) {
-                                CourseStudent cs = new CourseStudent();
-                                IdCourseStudent ics = new IdCourseStudent();
-                                
-                                ics.setMaMon(value[1]);
-                                ics.setMssv(s.getMssv());
-                        
-                                cs.setIcs(ics);
-                                session.save(cs);
-                            }
-                        }
+                        cs.setIcs(ics);
+                        cs.setDiemGk(Float.parseFloat(value[3]));
+                        cs.setDiemCk(Float.parseFloat(value[4]));
+                        cs.setDiemKhac(Float.parseFloat(value[5]));
+                        cs.setDiemTong(Float.parseFloat(value[6]));
+                    
+                        session.update(cs);
                     }
                 }
                 session.getTransaction().commit();
@@ -212,63 +194,77 @@ public class CourseManagerUI extends javax.swing.JFrame {
         } catch (HibernateException he) {
             System.err.println(he);
         }
-        showMessageDialog(null, "Đã import xong thời khóa biểu");
+        showMessageDialog(null, "Đã import xong bảng điểm");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String query = "";
-        String alert = "Chưa nhập vào lớp! Mời nhập vào để xem thời khóa biểu";
+        String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem bảng điểm";
         if (!jTextField1.getText().equals("")) {
-            query = "FROM Course c WHERE c.lop = '"
+            query = "FROM CourseStudent cs WHERE cs.ics.maMon = '"
                             + jTextField1.getText() + "' ";
-            alert = "Danh sách lớp " + jTextField1.getText();
+            alert = "Bảng điểm lớp " + jTextField1.getText();
             executeHQLQuery(query);
         }
         showMessageDialog(null, alert);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        executeHQLQuery("FROM Course");
-        showMessageDialog(null, "Thời khóa biểu của tất cả các lớp");
-    }//GEN-LAST:event_jButton4ActionPerformed
     
+    public void displayTranscriptList (List resultList) {
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        tableHeaders.add("STT"); 
+        tableHeaders.add("MSSV");
+        tableHeaders.add("Họ Tên");
+        tableHeaders.add("Điểm GK");
+        tableHeaders.add("Điểm CK");
+        tableHeaders.add("Điểm khác");
+        tableHeaders.add("Điểm tổng");
+        
+        int STT = 0;
+
+        for(Object o : resultList) {
+            STT++;
+            CourseStudent cs = (CourseStudent)o;
+            
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(STT);
+            oneRow.add(cs.getIcs().getMssv());
+            oneRow.add(getHoTenSinhVien(cs.getIcs().getMssv()));
+            oneRow.add(cs.getDiemGk());
+            oneRow.add(cs.getDiemCk());
+            oneRow.add(cs.getDiemKhac());
+            oneRow.add(cs.getDiemTong());
+            tableData.add(oneRow);
+        }
+        jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+    }
+
     private void executeHQLQuery(String query) {
-        List cList = new ArrayList();
+        List transcriptList = new ArrayList();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            cList = session.createQuery(query).list();
-            displayCSList(cList);
+            transcriptList = session.createQuery(query).list();
+            displayTranscriptList(transcriptList);
             session.getTransaction().commit();
         } catch (HibernateException he) {
             System.err.println(he);
         }
     }
     
-    public void displayCSList (List resultList) {
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("STT"); 
-        tableHeaders.add("Mã môn học");
-        tableHeaders.add("Tên môn học");
-        tableHeaders.add("Phòng học");
-        tableHeaders.add("Lớp");
-        
-        int STT = 0;
-
-        for(Object o : resultList) {
-            STT++;
-            Course c = (Course)o;
-            
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(STT);
-            oneRow.add(c.getMaMon());
-            oneRow.add(c.getTenMon());
-            oneRow.add(c.getPhongHoc());
-            oneRow.add(c.getLop());
-            tableData.add(oneRow);
+    private String getHoTenSinhVien (int mssv) {
+        String hoTen = "";
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            String query = "FROM Student s WHERE s.mssv = '" + mssv + "'";
+            Student s = (Student)session.createQuery(query).uniqueResult();
+            hoTen = s.getHoTen();
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            System.err.println(he);
         }
-        jTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+        return hoTen;
     }
     /**
      * @param args the command line arguments
@@ -287,20 +283,20 @@ public class CourseManagerUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CourseManagerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TranscriptUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CourseManagerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TranscriptUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CourseManagerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TranscriptUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CourseManagerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TranscriptUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CourseManagerUI().setVisible(true);
+                new TranscriptUI().setVisible(true);
             }
         });
     }
@@ -310,6 +306,7 @@ public class CourseManagerUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

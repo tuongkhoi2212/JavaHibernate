@@ -221,7 +221,6 @@ public class StudentManagerUI extends javax.swing.JFrame {
             String lop = "";
             while ((line = reader.readLine())  != null) {
                 String[] value = line.split(",");
-                //String query = "INSERT INTO Student VALUES (,)";
                 Session session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
                 if (value.length == 1) {
@@ -358,7 +357,4 @@ public class StudentManagerUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
-    private void While(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
