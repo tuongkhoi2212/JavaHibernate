@@ -6,6 +6,7 @@
 package ui;
 
 import entity.Student;
+import entity.User;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -160,14 +161,21 @@ public class AddStudentUI extends javax.swing.JFrame {
             session.beginTransaction();
 
             Student s = new Student();
+            User u = new User();
 
             s.setMssv(Integer.parseInt(jTextField1.getText()));
             s.setHoTen(jTextField3.getText());
             s.setGioiTinh(jTextField6.getText());
             s.setCmnd(jTextField2.getText());
             s.setLop(jTextField4.getText());
+            
+            Byte b = 0;
+            u.setIsAdmin(b);
+            u.setUserName(jTextField1.getText());
+            u.setPassword(jTextField1.getText());
 
             session.save(s);
+            session.save(u);
             session.getTransaction().commit();
             
             alert = "Đã thêm sinh viên " + jTextField3.getText() + " vào hệ thống ";

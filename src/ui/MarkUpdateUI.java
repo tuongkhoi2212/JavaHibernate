@@ -9,6 +9,7 @@ import entity.Course;
 import entity.CourseStudent;
 import entity.CourseStudentId;
 import entity.Student;
+import java.util.List;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -172,39 +173,28 @@ public class MarkUpdateUI extends javax.swing.JFrame {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
+            
             CourseStudent cs = new CourseStudent();
             CourseStudentId csi = new CourseStudentId();
-            
+
             csi.setMssv(Integer.parseInt(jTextField1.getText()));
             csi.setMaMon(jTextField2.getText());
-            
+
             cs.setId(csi);
             cs.setDiemGk(Float.parseFloat(jTextField3.getText()));
             cs.setDiemCk(Float.parseFloat(jTextField4.getText()));
             cs.setDiemKhac(Float.parseFloat(jTextField5.getText()));
             cs.setDiemTong(Float.parseFloat(jTextField6.getText()));
+
+            session.update(cs);
+
+            alert = "Đã sửa điểm của sinh viên " + 
+                getHoTenSinhVien(Integer.parseInt(jTextField1.getText())) 
+                + " thành " + jTextField3.getText() + ", "
+                + jTextField4.getText() + ", " + jTextField5.getText()
+                + ", " + jTextField6.getText();
             
-            String query = "FROM CourseStudent cs WHERE cs.id.mssv = '"
-                    + jTextField1.getText() + "' AND cs.id.maMon = '"
-                    + jTextField2.getText() + "'";
-            boolean exists = (Long) session.createQuery(query).uniqueResult() > 0;
-            
-            if (!exists) {
-                alert = "Không tìm thấy sinh viên hoặc môn học tương ứng";
-            } else {
-
-                session.update(cs);
-
-                alert = "Đã sửa điểm của sinh viên " + 
-                    getHoTenSinhVien(Integer.parseInt(jTextField3.getText())) 
-                    + " thành " + jTextField3.getText() + ", "
-                    + jTextField4.getText() + ", " + jTextField5.getText()
-                    + ", " + jTextField6.getText();
-            }
-
             session.getTransaction().commit();
-            
         } catch (HibernateException he) {
             System.err.println(he);
         }
