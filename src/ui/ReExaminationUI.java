@@ -5,6 +5,8 @@
  */
 package ui;
 
+import entity.User;
+
 /**
  *
  * @author AEVN
@@ -14,8 +16,11 @@ public class ReExaminationUI extends javax.swing.JFrame {
     /**
      * Creates new form ReExaminationUI
      */
-    public ReExaminationUI() {
+    static private User user;
+    
+    public ReExaminationUI(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -111,7 +116,8 @@ public class ReExaminationUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        AddReExamination frame = new AddReExamination();
+        frame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -144,7 +150,7 @@ public class ReExaminationUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReExaminationUI().setVisible(true);
+                new ReExaminationUI(user).setVisible(true);
             }
         });
     }

@@ -1,22 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 20, 2020 11:24:39 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jun 20, 2020 5:44:52 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="entity.ApplicationForm" table="`application form`" catalog="hibernate_java_db" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="Id" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="reExamination" class="entity.ReExamination" fetch="select">
+        <composite-id name="id" class="entity.ApplicationFormId">
+            <key-property name="mssv" type="int">
+                <column name="MSSV" />
+            </key-property>
+            <key-property name="reExamId" type="int">
+                <column name="`Re-examId`" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="reExamination" class="entity.ReExamination" update="false" insert="false" fetch="select">
             <column name="Re-examId" />
         </many-to-one>
-        <many-to-one name="student" class="entity.Student" fetch="select">
+        <many-to-one name="student" class="entity.Student" update="false" insert="false" fetch="select">
             <column name="MSSV" not-null="true" />
         </many-to-one>
-        <property name="reExamId" type="int">
-            <column name="`Re-examId`" not-null="true" />
-        </property>
         <property name="hoTen" type="string">
             <column name="HoTen" length="45" not-null="true" />
         </property>

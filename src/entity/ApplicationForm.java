@@ -1,5 +1,5 @@
 package entity;
-// Generated Jun 20, 2020 11:24:38 AM by Hibernate Tools 4.3.1
+// Generated Jun 20, 2020 5:44:52 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,10 +9,9 @@ package entity;
 public class ApplicationForm  implements java.io.Serializable {
 
 
-     private Integer id;
+     private ApplicationFormId id;
      private ReExamination reExamination;
      private Student student;
-     private int reExamId;
      private String hoTen;
      private String monPhucKhao;
      private String cotDiemPhucKhao;
@@ -24,19 +23,19 @@ public class ApplicationForm  implements java.io.Serializable {
     }
 
 	
-    public ApplicationForm(Student student, int reExamId, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo) {
+    public ApplicationForm(ApplicationFormId id, Student student, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo) {
+        this.id = id;
         this.student = student;
-        this.reExamId = reExamId;
         this.hoTen = hoTen;
         this.monPhucKhao = monPhucKhao;
         this.cotDiemPhucKhao = cotDiemPhucKhao;
         this.diemMongMuon = diemMongMuon;
         this.lyDo = lyDo;
     }
-    public ApplicationForm(ReExamination reExamination, Student student, int reExamId, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo, Byte trangThai) {
+    public ApplicationForm(ApplicationFormId id, ReExamination reExamination, Student student, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo, Byte trangThai) {
+       this.id = id;
        this.reExamination = reExamination;
        this.student = student;
-       this.reExamId = reExamId;
        this.hoTen = hoTen;
        this.monPhucKhao = monPhucKhao;
        this.cotDiemPhucKhao = cotDiemPhucKhao;
@@ -45,11 +44,11 @@ public class ApplicationForm  implements java.io.Serializable {
        this.trangThai = trangThai;
     }
    
-    public Integer getId() {
+    public ApplicationFormId getId() {
         return this.id;
     }
     
-    public void setId(Integer id) {
+    public void setId(ApplicationFormId id) {
         this.id = id;
     }
     public ReExamination getReExamination() {
@@ -65,13 +64,6 @@ public class ApplicationForm  implements java.io.Serializable {
     
     public void setStudent(Student student) {
         this.student = student;
-    }
-    public int getReExamId() {
-        return this.reExamId;
-    }
-    
-    public void setReExamId(int reExamId) {
-        this.reExamId = reExamId;
     }
     public String getHoTen() {
         return this.hoTen;
@@ -108,7 +100,6 @@ public class ApplicationForm  implements java.io.Serializable {
     public void setLyDo(String lyDo) {
         this.lyDo = lyDo;
     }
-
     public Byte getTrangThai() {
         return this.trangThai;
     }
@@ -116,6 +107,8 @@ public class ApplicationForm  implements java.io.Serializable {
     public void setTrangThai(Byte trangThai) {
         this.trangThai = trangThai;
     }
+
+
 
 
 }

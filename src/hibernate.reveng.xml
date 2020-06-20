@@ -41,8 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="hibernate_java_db"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="student"/>
   <table-filter match-name="course"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="re-examination"/>
+  <table-filter match-name="student"/>
+  <table-filter match-name="application form"/>
   <table-filter match-name="course_student"/>
 </hibernate-reverse-engineering>

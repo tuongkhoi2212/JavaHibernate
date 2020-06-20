@@ -82,6 +82,11 @@ public class AdminUI extends javax.swing.JFrame {
         });
 
         jButton6.setText("Phúc khảo");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +165,12 @@ public class AdminUI extends javax.swing.JFrame {
         ChangePasswordUI frame = new ChangePasswordUI(user);
         frame.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.dispose();
+        ReExaminationUI frame = new ReExaminationUI(user);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
