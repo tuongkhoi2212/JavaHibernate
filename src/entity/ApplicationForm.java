@@ -18,6 +18,7 @@ public class ApplicationForm  implements java.io.Serializable {
      private String cotDiemPhucKhao;
      private String diemMongMuon;
      private String lyDo;
+     private Byte trangThai;
 
     public ApplicationForm() {
     }
@@ -32,7 +33,7 @@ public class ApplicationForm  implements java.io.Serializable {
         this.diemMongMuon = diemMongMuon;
         this.lyDo = lyDo;
     }
-    public ApplicationForm(ReExamination reExamination, Student student, int reExamId, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo) {
+    public ApplicationForm(ReExamination reExamination, Student student, int reExamId, String hoTen, String monPhucKhao, String cotDiemPhucKhao, String diemMongMuon, String lyDo, Byte trangThai) {
        this.reExamination = reExamination;
        this.student = student;
        this.reExamId = reExamId;
@@ -41,6 +42,7 @@ public class ApplicationForm  implements java.io.Serializable {
        this.cotDiemPhucKhao = cotDiemPhucKhao;
        this.diemMongMuon = diemMongMuon;
        this.lyDo = lyDo;
+       this.trangThai = trangThai;
     }
    
     public Integer getId() {
@@ -107,7 +109,13 @@ public class ApplicationForm  implements java.io.Serializable {
         this.lyDo = lyDo;
     }
 
-
+    public Byte getTrangThai() {
+        return this.trangThai;
+    }
+    
+    public void setTrangThai(Byte trangThai) {
+        this.trangThai = trangThai;
+    }
 
 
 }

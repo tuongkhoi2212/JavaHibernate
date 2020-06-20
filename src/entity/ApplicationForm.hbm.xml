@@ -32,5 +32,8 @@
         <property name="lyDo" type="string">
             <column name="LyDo" length="200" not-null="true" />
         </property>
+        <property name="trangThai" type="java.lang.Byte">
+            <column name="TrangThai" />
+        </property>
     </class>
 </hibernate-mapping>
