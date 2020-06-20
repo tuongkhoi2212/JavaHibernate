@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 20, 2020 11:24:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.ReExamination" table="`re-examination`" catalog="hibernate_java_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="ngayBatDau" type="date">
+            <column name="NgayBatDau" length="10" not-null="true" />
+        </property>
+        <property name="ngayKetThuc" type="date">
+            <column name="NgayKetThuc" length="10" not-null="true" />
+        </property>
+        <set name="applicationForms" table="`application form`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Re-examId" />
+            </key>
+            <one-to-many class="entity.ApplicationForm" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,23 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 17, 2020 3:46:43 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 20, 2020 11:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="hibernate_java_db" name="entity.Student" optimistic-lock="version" table="student">
-    <id name="mssv" type="int">
-      <column name="MSSV"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="hoTen" type="string">
-      <column length="45" name="HoTen" not-null="true"/>
-    </property>
-    <property name="gioiTinh" type="string">
-      <column length="3" name="GioiTinh" not-null="true"/>
-    </property>
-    <property name="cmnd" type="string">
-      <column length="9" name="CMND" not-null="true"/>
-    </property>
-    <property name="lop" type="string">
-      <column length="45" name="Lop" not-null="true"/>
-    </property>
-  </class>
+    <class name="entity.Student" table="student" catalog="hibernate_java_db" optimistic-lock="version">
+        <id name="mssv" type="int">
+            <column name="MSSV" />
+            <generator class="assigned" />
+        </id>
+        <property name="hoTen" type="string">
+            <column name="HoTen" length="45" not-null="true" />
+        </property>
+        <property name="gioiTinh" type="string">
+            <column name="GioiTinh" length="3" not-null="true" />
+        </property>
+        <property name="cmnd" type="string">
+            <column name="CMND" length="9" not-null="true" unique="true" />
+        </property>
+        <property name="lop" type="string">
+            <column name="Lop" length="45" not-null="true" />
+        </property>
+        <set name="courseStudents" table="course_student" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MSSV" not-null="true" />
+            </key>
+            <one-to-many class="entity.CourseStudent" />
+        </set>
+        <set name="applicationForms" table="`application form`" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MSSV" not-null="true" />
+            </key>
+            <one-to-many class="entity.ApplicationForm" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,23 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 17, 2020 3:46:43 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 20, 2020 11:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="hibernate_java_db" name="entity.CourseStudent" optimistic-lock="version" table="course_student">
-    <composite-id name="ics" class="entity.IdCourseStudent">
-        <key-property name="maMon" column="MaMon" type="string"/>
-        <key-property name="mssv" column="MSSV" type="java.lang.Integer"/>
-    </composite-id>
-    <property name="diemGk" type="java.lang.Float">
-      <column name="DiemGK" precision="12" scale="0"/>
-    </property>
-    <property name="diemCk" type="java.lang.Float">
-      <column name="DiemCK" precision="12" scale="0"/>
-    </property>
-    <property name="diemKhac" type="java.lang.Float">
-      <column name="DiemKhac" precision="12" scale="0"/>
-    </property>
-    <property name="diemTong" type="java.lang.Float">
-      <column name="DiemTong" precision="12" scale="0"/>
-    </property>
-  </class>
+    <class name="entity.CourseStudent" table="course_student" catalog="hibernate_java_db" optimistic-lock="version">
+        <composite-id name="id" class="entity.CourseStudentId">
+            <key-property name="maMon" type="string">
+                <column name="MaMon" length="10" />
+            </key-property>
+            <key-property name="mssv" type="int">
+                <column name="MSSV" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="course" class="entity.Course" update="false" insert="false" fetch="select">
+            <column name="MaMon" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="student" class="entity.Student" update="false" insert="false" fetch="select">
+            <column name="MSSV" not-null="true" />
+        </many-to-one>
+        <property name="diemGk" type="java.lang.Float">
+            <column name="DiemGK" precision="12" scale="0" />
+        </property>
+        <property name="diemCk" type="java.lang.Float">
+            <column name="DiemCK" precision="12" scale="0" />
+        </property>
+        <property name="diemKhac" type="java.lang.Float">
+            <column name="DiemKhac" precision="12" scale="0" />
+        </property>
+        <property name="diemTong" type="java.lang.Float">
+            <column name="DiemTong" precision="12" scale="0" />
+        </property>
+    </class>
 </hibernate-mapping>

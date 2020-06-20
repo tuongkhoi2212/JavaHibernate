@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 20, 2020 11:24:39 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.ApplicationForm" table="`application form`" catalog="hibernate_java_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="reExamination" class="entity.ReExamination" fetch="select">
+            <column name="Re-examId" />
+        </many-to-one>
+        <many-to-one name="student" class="entity.Student" fetch="select">
+            <column name="MSSV" not-null="true" />
+        </many-to-one>
+        <property name="reExamId" type="int">
+            <column name="`Re-examId`" not-null="true" />
+        </property>
+        <property name="hoTen" type="string">
+            <column name="HoTen" length="45" not-null="true" />
+        </property>
+        <property name="monPhucKhao" type="string">
+            <column name="MonPhucKhao" length="45" not-null="true" />
+        </property>
+        <property name="cotDiemPhucKhao" type="string">
+            <column name="CotDiemPhucKhao" length="45" not-null="true" />
+        </property>
+        <property name="diemMongMuon" type="string">
+            <column name="DiemMongMuon" length="45" not-null="true" />
+        </property>
+        <property name="lyDo" type="string">
+            <column name="LyDo" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -148,8 +148,8 @@ public class MarkStudentUI extends javax.swing.JFrame {
             
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(STT);
-            oneRow.add(cs.getIcs().getMaMon());
-            oneRow.add(getTenMonHoc(cs.getIcs().getMaMon()));
+            oneRow.add(cs.getId().getMaMon());
+            oneRow.add(getTenMonHoc(cs.getId().getMaMon()));
             oneRow.add(cs.getDiemGk());
             oneRow.add(cs.getDiemCk());
             oneRow.add(cs.getDiemKhac());

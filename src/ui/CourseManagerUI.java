@@ -7,7 +7,7 @@ package ui;
 
 import entity.Course;
 import entity.CourseStudent;
-import entity.IdCourseStudent;
+import entity.CourseStudentId;
 import entity.Student;
 import entity.User;
 import java.io.BufferedReader;
@@ -202,12 +202,12 @@ public class CourseManagerUI extends javax.swing.JFrame {
                             Student s = (Student)o;
                             if (s.getLop().equals(lop)) {
                                 CourseStudent cs = new CourseStudent();
-                                IdCourseStudent ics = new IdCourseStudent();
+                                CourseStudentId csi = new CourseStudentId();
                                 
-                                ics.setMaMon(value[1]);
-                                ics.setMssv(s.getMssv());
+                                csi.setMaMon(value[1]);
+                                csi.setMssv(s.getMssv());
                         
-                                cs.setIcs(ics);
+                                cs.setId(csi);
                                 session.save(cs);
                             }
                         }

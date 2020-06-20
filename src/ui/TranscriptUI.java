@@ -6,7 +6,7 @@
 package ui;
 
 import entity.CourseStudent;
-import entity.IdCourseStudent;
+import entity.CourseStudentId;
 import entity.Student;
 import entity.User;
 import java.io.BufferedReader;
@@ -216,12 +216,12 @@ public class TranscriptUI extends javax.swing.JFrame {
                 } else if (value.length > 1) {
                     if (!value[0].equals("STT")) {
                         CourseStudent cs = new CourseStudent();
-                        IdCourseStudent ics = new IdCourseStudent();
+                        CourseStudentId csi = new CourseStudentId();
                         
-                        ics.setMaMon(mon[1]);
-                        ics.setMssv(Integer.parseInt(value[1]));
+                        csi.setMaMon(mon[1]);
+                        csi.setMssv(Integer.parseInt(value[1]));
                         
-                        cs.setIcs(ics);
+                        cs.setId(csi);
                         cs.setDiemGk(Float.parseFloat(value[3]));
                         cs.setDiemCk(Float.parseFloat(value[4]));
                         cs.setDiemKhac(Float.parseFloat(value[5]));
@@ -335,8 +335,8 @@ public class TranscriptUI extends javax.swing.JFrame {
             
             Vector<Object> oneRow = new Vector<Object>();
             oneRow.add(STT);
-            oneRow.add(cs.getIcs().getMssv());
-            oneRow.add(getHoTenSinhVien(cs.getIcs().getMssv()));
+            oneRow.add(cs.getId().getMssv());
+            oneRow.add(getHoTenSinhVien(cs.getId().getMssv()));
             oneRow.add(cs.getDiemGk());
             oneRow.add(cs.getDiemCk());
             oneRow.add(cs.getDiemKhac());

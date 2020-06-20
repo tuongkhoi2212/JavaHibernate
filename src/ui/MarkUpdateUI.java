@@ -7,7 +7,7 @@ package ui;
 
 import entity.Course;
 import entity.CourseStudent;
-import entity.IdCourseStudent;
+import entity.CourseStudentId;
 import entity.Student;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
@@ -174,12 +174,12 @@ public class MarkUpdateUI extends javax.swing.JFrame {
             session.beginTransaction();
 
             CourseStudent cs = new CourseStudent();
-            IdCourseStudent ics = new IdCourseStudent();
+            CourseStudentId csi = new CourseStudentId();
             
-            ics.setMssv(Integer.parseInt(jTextField1.getText()));
-            ics.setMaMon(jTextField2.getText());
+            csi.setMssv(Integer.parseInt(jTextField1.getText()));
+            csi.setMaMon(jTextField2.getText());
             
-            cs.setIcs(ics);
+            cs.setId(csi);
             cs.setDiemGk(Float.parseFloat(jTextField3.getText()));
             cs.setDiemCk(Float.parseFloat(jTextField4.getText()));
             cs.setDiemKhac(Float.parseFloat(jTextField5.getText()));

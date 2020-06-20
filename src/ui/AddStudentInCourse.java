@@ -7,7 +7,7 @@ package ui;
 
 import entity.Course;
 import entity.CourseStudent;
-import entity.IdCourseStudent;
+import entity.CourseStudentId;
 import entity.Student;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.hibernate.HibernateException;
@@ -126,11 +126,11 @@ public class AddStudentInCourse extends javax.swing.JFrame {
             session.beginTransaction();
 
             CourseStudent cs = new CourseStudent();
-            IdCourseStudent ics = new IdCourseStudent();
+            CourseStudentId csi = new CourseStudentId();
             
-            ics.setMaMon(jTextField1.getText());
-            ics.setMssv(Integer.parseInt(jTextField3.getText()));
-            cs.setIcs(ics);
+            csi.setMaMon(jTextField1.getText());
+            csi.setMssv(Integer.parseInt(jTextField3.getText()));
+            cs.setId(csi);
             
             session.save(cs);
             
