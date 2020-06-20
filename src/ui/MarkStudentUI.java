@@ -124,7 +124,7 @@ public class MarkStudentUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String query = "FROM CourseStudent cs WHERE cs.ics.mssv = '"
+        String query = "FROM CourseStudent cs WHERE cs.id.mssv = '"
                 + user.getUserName() + "'";
         executeHQLQuery(query);
     }//GEN-LAST:event_jButton1ActionPerformed

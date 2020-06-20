@@ -187,10 +187,11 @@ public class StudentManagerUI extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton6)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton6)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,8 +274,8 @@ public class StudentManagerUI extends javax.swing.JFrame {
             alert = "Danh sách lớp " + jTextField1.getText();
         }
         if (!jTextField2.getText().equals("")) {
-            query = "FROM Student s WHERE s.mssv in ( SELECT cs.ics.mssv "
-                    + "FROM CourseStudent cs WHERE cs.ics.maMon = '"
+            query = "FROM Student s WHERE s.mssv in ( SELECT cs.id.mssv "
+                    + "FROM CourseStudent cs WHERE cs.id.maMon = '"
                     + jTextField2.getText()
                     + "' )";
             alert = "Danh sách lớp " + jTextField2.getText();

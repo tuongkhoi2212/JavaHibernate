@@ -185,8 +185,8 @@ public class MarkUpdateUI extends javax.swing.JFrame {
             cs.setDiemKhac(Float.parseFloat(jTextField5.getText()));
             cs.setDiemTong(Float.parseFloat(jTextField6.getText()));
             
-            String query = "FROM CourseStudent cs WHERE cs.ics.mssv = '"
-                    + jTextField1.getText() + "' AND cs.ics.maMon = '"
+            String query = "FROM CourseStudent cs WHERE cs.id.mssv = '"
+                    + jTextField1.getText() + "' AND cs.id.maMon = '"
                     + jTextField2.getText() + "'";
             boolean exists = (Long) session.createQuery(query).uniqueResult() > 0;
             

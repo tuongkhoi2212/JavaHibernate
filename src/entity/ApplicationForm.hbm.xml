@@ -3,17 +3,17 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 20, 2020 5:44:52 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="entity.ApplicationForm" table="`application form`" catalog="hibernate_java_db" optimistic-lock="version">
+    <class name="entity.ApplicationForm" table="`application_form`" catalog="hibernate_java_db" optimistic-lock="version">
         <composite-id name="id" class="entity.ApplicationFormId">
             <key-property name="mssv" type="int">
                 <column name="MSSV" />
             </key-property>
             <key-property name="reExamId" type="int">
-                <column name="`Re-examId`" />
+                <column name="`ReExamId`" />
             </key-property>
         </composite-id>
         <many-to-one name="reExamination" class="entity.ReExamination" update="false" insert="false" fetch="select">
-            <column name="Re-examId" />
+            <column name="ReExamId" />
         </many-to-one>
         <many-to-one name="student" class="entity.Student" update="false" insert="false" fetch="select">
             <column name="MSSV" not-null="true" />

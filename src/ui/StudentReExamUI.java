@@ -141,7 +141,7 @@ public class StudentReExamUI extends javax.swing.JFrame {
             showMessageDialog(null, alert);
         } else {
             String value = jTable1.getModel().getValueAt(row, 1).toString();
-            AddReExamApplicationForm frame = new AddReExamApplicationForm(user);
+            AddReExamApplicationForm frame = new AddReExamApplicationForm(user, value);
             frame.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

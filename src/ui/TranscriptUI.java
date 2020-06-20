@@ -175,12 +175,13 @@ public class TranscriptUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -242,7 +243,7 @@ public class TranscriptUI extends javax.swing.JFrame {
         String query = "";
         String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem bảng điểm";
         if (!jTextField1.getText().equals("")) {
-            query = "FROM CourseStudent cs WHERE cs.ics.maMon = '"
+            query = "FROM CourseStudent cs WHERE cs.id.maMon = '"
                             + jTextField1.getText() + "' ";
             alert = "Bảng điểm môn " + jTextField1.getText();
             executeHQLQuery(query);
@@ -252,9 +253,9 @@ public class TranscriptUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String query = "";
-        String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem bảng điểm";
+        String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem danh sách đậu";
         if (!jTextField1.getText().equals("")) {
-            query = "FROM CourseStudent cs WHERE cs.ics.maMon = '"
+            query = "FROM CourseStudent cs WHERE cs.id.maMon = '"
                             + jTextField1.getText() + "' AND cs.diemTong >= 5";
             alert = "Danh sách đậu môn " + jTextField1.getText();
             executeHQLQuery(query);
@@ -264,9 +265,9 @@ public class TranscriptUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String query = "";
-        String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem bảng điểm";
+        String alert = "Chưa nhập vào mã môn học! Mời nhập vào để xem danh sách rớt";
         if (!jTextField1.getText().equals("")) {
-            query = "FROM CourseStudent cs WHERE cs.ics.maMon = '"
+            query = "FROM CourseStudent cs WHERE cs.id.maMon = '"
                             + jTextField1.getText() + "' AND cs.diemTong < 5";
             alert = "Danh sách rớt môn " + jTextField1.getText();
             executeHQLQuery(query);
@@ -278,7 +279,7 @@ public class TranscriptUI extends javax.swing.JFrame {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            String query = "FROM CourseStudent cs WHERE cs.ics.maMon = '"
+            String query = "FROM CourseStudent cs WHERE cs.id.maMon = '"
                     + jTextField1.getText() + "' ";
             List resultList = session.createQuery(query).list();
             int soLuongDau = 0, soLuongRot;
